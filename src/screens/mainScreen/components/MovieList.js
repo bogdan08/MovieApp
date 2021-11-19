@@ -2,7 +2,7 @@
 import React from 'react';
 import { Image, View, FlatList, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import MovieCard from './MovieCard';
-const MovieList = ({ data, navigation }) => {
+const MovieList = ({isConnected,search, data, navigation }) => {
   return (
     <View style={{ marginBottom: 20 }}>
       <View style={styles.textContainer}>
@@ -10,7 +10,7 @@ const MovieList = ({ data, navigation }) => {
           <Text
             style={{ fontSize: 20 }}
           >
-            Popular Movies
+           {search?'Search:':'Popular Movies'}
           </Text>
         </View>
 
@@ -18,7 +18,7 @@ const MovieList = ({ data, navigation }) => {
       <FlatList
         data={data}
         horizontal
-        renderItem={({ item, index }) => <MovieCard movie={item} navigation={navigation} />}
+        renderItem={({ item, index }) => <MovieCard movie={item} isConnected={isConnected} navigation={navigation} />}
         style={{ marginTop: 10 }}
         keyExtractor={({ id }) => String(id)}
         showsHorizontalScrollIndicator={false}
